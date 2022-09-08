@@ -5,6 +5,7 @@ import json
 import pathlib
 from pathlib import Path
 import os
+import yadisk
 
 params_vk = {
     'user_ids': '12541943',
@@ -98,81 +99,20 @@ def created_file():
          os.mkdir('photo_library')
     check_file = os.path.exists(str(t))
     if check_file != True:
-        os.path.join('photo_library', name)
         with open(name, "w+", encoding='utf-8') as write_file:
             json.dump(name_photo_id(), write_file)
-    #     f = open(t, 'r')
-    #     f.close()
         os.rename(d, t)
-    #     f = open(t, "r")
-    #     f.close()
-    # f = open(t, 'r')
-    # f.close()
-    # name.close()
-    # else:
-    #     print('уже есть файл')
-    # print(t)
-    # return t
+    return t
 
-created_file()
+# created_file()
 
+# pprint(name_photo_id())
 
-
-    # print(dir_path)
-    # print(path)
-
-
-
-# training_parsing()
-
-'------------------------------'
-# def name_photo_id():
-#     u = created_file()
-#     with open(u, "w") as read_file:
-#         # dict_photo = {}
-#         dict_photo = json.load(read_file)['photo_library']
-#     list_likes = []
-#     non_unique_values = []
-#     pprint(dict_photo)
-#     for name in dict_photo.values():
-#         print('-------------')
-#         # pprint(name)
-#         list_likes.append(name['likes'])
-#     list_likes_len = len(list_likes)
-#     for i in range(0, list_likes_len-1):
-#         for j in range(i+1, list_likes_len):
-#             if list_likes[i] == list_likes[j]:
-#                 non_unique_values.append(list_likes[i])
-#     # for x in dict_photo.keys():
-#     for name in dict_photo.values():
-#         if name['likes'] not in non_unique_values:
-#             name.setdefault('name', (str(name['likes']) + str(name['date'])))
-#             dict_photo.update(name)
-#             # h = json.load(read_file)['photo_library'][name]
-#             # h.setdefault('name', (name['likes'] + name['date']))
-#             # pprint(dict_photo.values())
-#         # print(x)
-#         # print('-------------')
-#         pprint(dict_photo.values())
-'------------------------------'
-
-
-# def name_photo_id():
-#     y = training_parsing()
-#     list_likes = []
-#     for name in y['photo_library'].values():
-#         print('-------------')
-#         pprint(name)
-#         list_likes.append(name['likes'])
-#     list_likes_len = len(list_likes)
-#     for i in range(0, list_likes_len-1):
-#         for j in range(i+1, list_likes_len):
-#             if list_likes[i] == list_likes[j]:
-#
-#                 print(j)
-
-
-
-
-
-
+TOKEN_YaD = "y0_AgAAAAA6ZEzlAADLWwAAAADM1U5eBN3ZTeHwRlaFbIA6hr8Y9MF5lYs"
+# ya = YandexDisk(token=TOKEN_YaD)
+y = yadisk.YaDisk(token=TOKEN_YaD)
+# myself = Path(__file__).resolve()
+# res = myself.parents[1] / 'data_photo_12541943.json'
+# x = "data_photo_12541943.json :\t", res
+# print(x[1])
+y.upload("data_photo_12541943.json", "/ДЗ/data_photo_12541943.json")
