@@ -7,6 +7,8 @@ from pathlib import Path
 import os
 import yadisk
 
+TOKEN_YaD = "y0_AgAAAAA6ZEzlAADLWwAAAADM1U5eBN3ZTeHwRlaFbIA6hr8Y9MF5lYs"
+
 params_vk = {
     'user_ids': '12541943',
     'access_token': 'vk1.a.xGngL8Ju9ZI96uSb6wEYrFXpbIbyeGSoMXDcoxJwLiwhFNFoNgE8N-k6nB-2vxdWrDd8CH-1g3L6CNbzZ2YaSDItsVSsTeES5SS1GX5j1KVxX_YtBSMPoSFJoHq5gS3nZ-h0k3e1PhrFE4vfiZPgfvpmZ9Xgxw0dW0PgJGLI5nPWxC7BwQAji5MdfkpO-xfb',
@@ -95,24 +97,25 @@ def created_file():
     dir_path = pathlib.Path.cwd()
     t = str(dir_path) + str(w) + 'photo_library' + str(w) + str(name)
     d = str(dir_path) + w + name
-    if not os.path.isdir('photo_library'):
-         os.mkdir('photo_library')
+    е = str(w) + name
+    # if not os.path.isdir('photo_library'):
+    #      os.mkdir('photo_library')
     check_file = os.path.exists(str(t))
     if check_file != True:
         with open(name, "w+", encoding='utf-8') as write_file:
             json.dump(name_photo_id(), write_file)
-        os.rename(d, t)
-    return t
-
-# created_file()
+        # os.rename(d, t)
+    return name, е
 
 # pprint(name_photo_id())
+def load_on_YaD():
+    y = yadisk.YaDisk(token=TOKEN_YaD)
+    y.upload(created_file()[0], created_file()[0])
+    # # myself = Path(__file__).resolve()
+    # # res = myself.parents[1] / 'data_photo_12541943.json'
+    # # x = "data_photo_12541943.json :\t", res
+    # # print(x[1])
+    # y.upload("data_photo_12541943.json", "/data_photo_12541943.json")
 
-TOKEN_YaD = "y0_AgAAAAA6ZEzlAADLWwAAAADM1U5eBN3ZTeHwRlaFbIA6hr8Y9MF5lYs"
-# ya = YandexDisk(token=TOKEN_YaD)
-y = yadisk.YaDisk(token=TOKEN_YaD)
-# myself = Path(__file__).resolve()
-# res = myself.parents[1] / 'data_photo_12541943.json'
-# x = "data_photo_12541943.json :\t", res
-# print(x[1])
-y.upload("data_photo_12541943.json", "/ДЗ/data_photo_12541943.json")
+
+load_on_YaD()
